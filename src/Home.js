@@ -4,12 +4,31 @@ import logo from './react.svg';
 import './Home.css';
 
 class Home extends Component {
+  componentDidMount() {
+    // console.log('localStorage.get("i18nextLng")');
+    // console.log(localStorage);
+    // how to create
+    // this.currentLng = JSON.stringify(localStorage;
+    this.isUnmounted = true;
+    this.forceUpdate();
+    
+    
+  }
+  
+
+  
   render() {
     const { t, i18n } = this.props;
 
     const changeLanguage = lng => {
       i18n.changeLanguage(lng);
     };
+
+    // console.log("localStorage");
+    // console.log(localStorage);
+    // const currentLng = '';//localStorage.get("i18nextLng");
+
+    // const currentLng = () = localStorage.get("i18nextLng");
 
     return (
       <div className="Home">
@@ -23,6 +42,7 @@ class Home extends Component {
             reload.
           </Trans>
         </div>
+        <div>{this.isUnmounted && localStorage.getItem('i18nextLng')}</div>
         <button onClick={() => changeLanguage('de')}>de</button>
         <button onClick={() => changeLanguage('en')}>en</button>
         <ul className="Home-resources">
