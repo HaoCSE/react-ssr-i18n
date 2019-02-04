@@ -24,7 +24,9 @@ class Home extends Component {
       i18n.changeLanguage(lng);
     };
 
-    // console.log("localStorage");
+
+
+    console.log("localStorage");
     // console.log(localStorage);
     // const currentLng = '';//localStorage.get("i18nextLng");
 

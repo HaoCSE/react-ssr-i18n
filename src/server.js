@@ -33,6 +33,19 @@ i18n
         loadPath: `${appSrc}/locales/{{lng}}/{{ns}}.json`,
         addPath: `${appSrc}/locales/{{lng}}/{{ns}}.missing.json`,
       },
+      detection: {
+        // order and from where user language should be detected
+        order: ['path',/* 'session', */ 'querystring', 'cookie', 'header'],
+        // keys or params to lookup language from
+        lookupQuerystring: 'lng',
+        lookupCookie: 'i18next',
+        lookupSession: 'lng',
+        lookupPath: 'lng',
+        lookupFromPathIndex: 0,
+
+        // cache user language
+        caches: false, // ['cookie']
+      },
     },
     () => {
       server
@@ -42,6 +55,9 @@ i18n
         .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
         .get('/*', (req, res) => {
           const context = {};
+          console.log('hey');
+          console.log(req.i18n.language);
+
           const markup = renderToString(
             <I18nextProvider i18n={req.i18n}>
               <StaticRouter context={context} location={req.url}>
